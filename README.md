@@ -1,2 +1,3 @@
-# Npcap
-Network traffic analysis and packet capture 
+# Npcap 
+for more Info : https://npcap.com/#download
+Npcap is the Nmap Project's packet capture (and sending) library for Microsoft Windows. It implements the open Pcap API using a custom Windows kernel driver alongside our Windows build of the excellent libpcap library. This allows Windows software to capture raw network traffic (including wireless networks, wired ethernet, localhost traffic, and many VPNs) using a simple, portable API. Npcap allows for sending raw packets as well as special license rights allowing customers to redistribute Npcap with their products or to install it on more systems within their organization with easy enterprise deployment.
