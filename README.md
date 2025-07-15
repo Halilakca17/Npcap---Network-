@@ -82,10 +82,8 @@ Bu proje, C diliyle geliştirilmiş bir ağ paket analizörüdür. NPcap SDK kul
 | ReadingDumpFiles.c / .h    | Kayıtlı PCAP dosyalarını okuma                                           |
 | SavingDumpFiles.c / .h     | Yakalanan paketleri dosyaya kaydetme                                     |
 | SendingQueue.c / .h        | Gönderilecek paketlerin kuyruğa alınması                                 |
-| Packet_analyzer.h          | Paket analiz fonksiyonları (muhtemelen prototipler)                      |
-| nfs.pcap                   | Örnek veya test amaçlı büyük bir PCAP dosyası                            |
-| kayit3                     | Muhtemelen örnek bir çıktı veya veri dosyası                             |
-| xx.c                       | Test veya ek fonksiyonlar içeren dosya                                   |
+| Packet_analyzer.h          | Paket analiz fonksiyonları                      |
+
 
 ## Uygulama Arayüzü
 
