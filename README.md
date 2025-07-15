@@ -95,6 +95,7 @@ Bu proje, C diliyle geliştirilmiş bir ağ paket analizörüdür. NPcap SDK kul
 ## Filtreleme  Örneği
 
 Bu fonksiyon, sistemdeki tüm ağ arayüzlerini listeler ve kullanıcıdan bir arayüz seçmesini ister. Seçilen arayüz üzerinde şu an TCP port 80 (HTTP) trafiğini filtreleyerek yakalar. Gelen paketlerin zaman damgası ve uzunluk bilgilerini ekrana yazdırır.
+
 ![-](images/ConsoleApp2.PNG)
 
 ## TCP Trafik İstatistik Örneği
