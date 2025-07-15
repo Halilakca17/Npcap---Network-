@@ -67,7 +67,6 @@ Bu proje, C diliyle geliştirilmiş bir ağ paket analizörüdür. NPcap SDK kul
    - Filtreleme ve istatistik toplama
    - Paket gönderme (replay)
 
-> **Not:** Programın komut satırı arayüzü veya menü tabanlı bir arayüzü olabilir. Detaylar için `ConsoleApplication1.c` dosyasındaki ana fonksiyona bakınız.
 
 ## Dosya Açıklamaları
 
