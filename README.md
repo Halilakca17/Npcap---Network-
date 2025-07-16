@@ -1,4 +1,4 @@
-# ConsoleApplication1
+# PcapAnalyzer
 
 Npcap, Nmap Projesi'nin Microsoft Windows için geliştirdiği bir paket yakalama (ve gönderme) kütüphanesidir.  
 Açık kaynaklı Pcap API'sini, özel bir Windows çekirdek sürücüsü ve libpcap kütüphanesinin Windows derlemesiyle birlikte uygular.
@@ -67,7 +67,6 @@ Bu proje, C diliyle geliştirilmiş bir ağ paket analizörüdür. NPcap SDK kul
    - Filtreleme ve istatistik toplama
    - Paket gönderme (replay)
 
-> **Not:** Programın komut satırı arayüzü veya menü tabanlı bir arayüzü olabilir. Detaylar için `ConsoleApplication1.c` dosyasındaki ana fonksiyona bakınız.
 
 ## Dosya Açıklamaları
 
@@ -83,10 +82,8 @@ Bu proje, C diliyle geliştirilmiş bir ağ paket analizörüdür. NPcap SDK kul
 | ReadingDumpFiles.c / .h    | Kayıtlı PCAP dosyalarını okuma                                           |
 | SavingDumpFiles.c / .h     | Yakalanan paketleri dosyaya kaydetme                                     |
 | SendingQueue.c / .h        | Gönderilecek paketlerin kuyruğa alınması                                 |
-| Packet_analyzer.h          | Paket analiz fonksiyonları (muhtemelen prototipler)                      |
-| nfs.pcap                   | Örnek veya test amaçlı büyük bir PCAP dosyası                            |
-| kayit3                     | Muhtemelen örnek bir çıktı veya veri dosyası                             |
-| xx.c                       | Test veya ek fonksiyonlar içeren dosya                                   |
+| Packet_analyzer.h          | Paket analiz fonksiyonları                      |
+
 
 ## Uygulama Arayüzü
 
@@ -95,6 +92,7 @@ Bu proje, C diliyle geliştirilmiş bir ağ paket analizörüdür. NPcap SDK kul
 ## Filtreleme  Örneği
 
 Bu fonksiyon, sistemdeki tüm ağ arayüzlerini listeler ve kullanıcıdan bir arayüz seçmesini ister. Seçilen arayüz üzerinde şu an TCP port 80 (HTTP) trafiğini filtreleyerek yakalar. Gelen paketlerin zaman damgası ve uzunluk bilgilerini ekrana yazdırır.
+
 ![-](images/ConsoleApp2.PNG)
 
 ## TCP Trafik İstatistik Örneği
