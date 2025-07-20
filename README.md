@@ -154,6 +154,17 @@ CICIDS2017 gibi veri kümeleri ile uyumludur.
 
 Kaynak : https://github.com/ahlashkari/CICFlowMeter
 
+Gerekli indirmeleri bu link üzerinden tamamladıktan sonra programı bu komutla çalıştırmalısınız :   
+
+java -Djava.library.path="path\to\jnetpcap\win\jnetpcap-1.4.r1425" ^  
+ -jar "path\to\target\CICFlowMeterV3-0.0.4-SNAPSHOT.jar" ^  
+ -i "path\to\pcap_folder" ^  
+ -o "path\to\output_csv_folder"  
+ 
+- YOUR_PATH: CICFlowMeter klasörünün bulunduğu ana dizin  
+- pcap_folder: .pcap uzantılı ağ trafiği dosyalarının bulunduğu klasör  
+- output_csv_folder: .csv çıktılarının kaydedileceği hedef klasör  
+
 ![-](images/ConsoleApp11.PNG)
 
 
