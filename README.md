@@ -138,6 +138,20 @@ seçilen adaptörden gerçek zamanlı ağ paketlerini yakalar ve bu paketleri be
 ![-](images/ConsoleApp7.PNG)
 
 
+## Read Örneği
+
+Bu kod, bir .pcap (veya .pcapng) dosyasını okuyarak içindeki her paketi timestamp (zaman damgası) ve ham hex verisi ile birlikte terminalde yazdırıyor.
+
+Ethernet Başlığı (14 Byte) incelendiğinde    
+00 00 0c 07 ac be   => Destination MAC  
+18 cc 18 28 e2 22   => Source MAC  
+08 00               => EtherType = IPv4  
+Bilgilerine ulaşabiliriz.  
+IP ve TCP başlıklarıda aynı şekilde incelenebilir. 
+
+![-](images/ReadDump.PNG)
+
+
 ## CICFlowMeter
 
 CICFlowMeter, ağ trafiği analizinde kullanılan bir araçtır.
