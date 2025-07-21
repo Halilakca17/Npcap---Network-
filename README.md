@@ -137,6 +137,27 @@ seçilen adaptörden gerçek zamanlı ağ paketlerini yakalar ve bu paketleri be
 ![-](images/ConsoleApp6.PNG)
 ![-](images/ConsoleApp7.PNG)
 
+## Interpreting Packets 
+
+Yakalanan paketin IP ve UDP başlıklarını ayrıştırır, zaman damgasını okunabilir formata çevirir ve paket uzunluğu, kaynak ve hedef IP adresleri ile port numaralarını ekrana yazdırır.
+
+
+![-](images/Interpackets.PNG)
+
+
+## Read Örneği
+
+Bu kod, bir .pcap (veya .pcapng) dosyasını okuyarak içindeki her paketi timestamp (zaman damgası) ve ham hex verisi ile birlikte terminalde yazdırıyor.
+
+Ethernet Başlığı (14 Byte) incelendiğinde    
+00 00 0c 07 ac be   => Destination MAC  
+18 cc 18 28 e2 22   => Source MAC  
+08 00               => EtherType = IPv4  
+Bilgilerine ulaşabiliriz.  
+IP ve TCP başlıklarıda aynı şekilde incelenebilir. 
+
+![-](images/ReadDump.PNG)
+
 
 ## CICFlowMeter
 
@@ -153,6 +174,17 @@ Siber güvenlik ve saldırı tespiti gibi uygulamalarda kullanılır: Örneğin,
 CICIDS2017 gibi veri kümeleri ile uyumludur.  
 
 Kaynak : https://github.com/ahlashkari/CICFlowMeter
+
+Gerekli indirmeleri bu link üzerinden tamamladıktan sonra programı bu komutla çalıştırmalısınız :   
+
+java -Djava.library.path="path\to\jnetpcap\win\jnetpcap-1.4.r1425" ^  
+ -jar "path\to\target\CICFlowMeterV3-0.0.4-SNAPSHOT.jar" ^  
+ -i "path\to\pcap_folder" ^  
+ -o "path\to\output_csv_folder"  
+ 
+- YOUR_PATH: CICFlowMeter klasörünün bulunduğu ana dizin  
+- pcap_folder: .pcap uzantılı ağ trafiği dosyalarının bulunduğu klasör  
+- output_csv_folder: .csv çıktılarının kaydedileceği hedef klasör  
 
 ![-](images/ConsoleApp11.PNG)
 
