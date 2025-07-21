@@ -1,11 +1,9 @@
-#include "InterPackets.h"
-#include <pcap.h>
-#include <Winsock2.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-#pragma comment(lib, "ws2_32.lib")
+#include <pcap.h>
+#include <winsock2.h>
+#include <windows.h>
 
 typedef struct ip_address {
     u_char byte1;
@@ -23,9 +21,9 @@ typedef struct ip_header {
     u_char  ttl;
     u_char  proto;
     u_short crc;
-    ip_address saddr;
-    ip_address daddr;
-    u_int op_pad;
+    ip_address  saddr;
+    ip_address  daddr;
+    u_int  op_pad;
 } ip_header;
 
 typedef struct udp_header {
@@ -49,14 +47,13 @@ void packet_handler(u_char* param, const struct pcap_pkthdr* header, const u_cha
 
     local_tv_sec = header->ts.tv_sec;
     localtime_s(&ltime, &local_tv_sec);
-    strftime(timestr, sizeof(timestr), "%H:%M:%S", &ltime);
+    strftime(timestr, sizeof timestr, "%H:%M:%S", &ltime);
 
     printf("%s.%.6d len:%d ", timestr, header->ts.tv_usec, header->len);
 
-    ih = (ip_header*)(pkt_data + 14);
+    ih = (ip_header*)(pkt_data + 14); // Ethernet header uzunluðu
 
-    ip_len = (ih->ver_ihl & 0x0F) * 4;
-
+    ip_len = (ih->ver_ihl & 0x0f) * 4;
     uh = (udp_header*)((u_char*)ih + ip_len);
 
     sport = ntohs(uh->sport);
@@ -77,52 +74,61 @@ void packet_handler(u_char* param, const struct pcap_pkthdr* header, const u_cha
 
 void run_inter_packets()
 {
-    pcap_if_t* alldevs, * d;
+    pcap_if_t* alldevs;
+    pcap_if_t* d;
+    int inum;
+    int i = 0;
     pcap_t* adhandle;
     char errbuf[PCAP_ERRBUF_SIZE];
-    int i = 0, inum;
     u_int netmask;
-    struct bpf_program fcode;
     char packet_filter[] = "ip and udp";
+    struct bpf_program fcode;
 
     if (pcap_findalldevs_ex(PCAP_SRC_IF_STRING, NULL, &alldevs, errbuf) == -1)
     {
         fprintf(stderr, "Error in pcap_findalldevs: %s\n", errbuf);
-        return;
+        exit(1);
     }
 
     for (d = alldevs; d; d = d->next)
-        printf("%d. %s (%s)\n", ++i, d->name, d->description ? d->description : "No description");
+    {
+        printf("%d. %s", ++i, d->name);
+        if (d->description)
+            printf(" (%s)\n", d->description);
+        else
+            printf(" (No description available)\n");
+    }
 
     if (i == 0)
     {
-        printf("No interfaces found! Make sure Npcap is installed.\n");
+        printf("\nNo interfaces found! Make sure Npcap is installed.\n");
+        pcap_freealldevs(alldevs);
         return;
     }
 
     printf("Enter the interface number (1-%d):", i);
     scanf_s("%d", &inum);
+    getchar();
 
     if (inum < 1 || inum > i)
     {
-        printf("Interface number out of range.\n");
+        printf("\nInterface number out of range.\n");
         pcap_freealldevs(alldevs);
         return;
     }
 
     for (d = alldevs, i = 0; i < inum - 1; d = d->next, i++);
 
-    adhandle = pcap_open(d->name, 65536, PCAP_OPENFLAG_PROMISCUOUS, 1000, NULL, errbuf);
-    if (adhandle == NULL)
+    if ((adhandle = pcap_open(d->name, 65536, PCAP_OPENFLAG_PROMISCUOUS, 1000, NULL, errbuf)) == NULL)
     {
-        fprintf(stderr, "Unable to open the adapter. %s\n", errbuf);
+        fprintf(stderr, "\nUnable to open the adapter. %s is not supported by Npcap\n", d->name);
         pcap_freealldevs(alldevs);
         return;
     }
 
     if (pcap_datalink(adhandle) != DLT_EN10MB)
     {
-        fprintf(stderr, "This program works only on Ethernet networks.\n");
+        fprintf(stderr, "\nThis program works only on Ethernet networks.\n");
         pcap_freealldevs(alldevs);
         return;
     }
@@ -134,19 +140,19 @@ void run_inter_packets()
 
     if (pcap_compile(adhandle, &fcode, packet_filter, 1, netmask) < 0)
     {
-        fprintf(stderr, "Unable to compile the packet filter. Check the syntax.\n");
+        fprintf(stderr, "\nUnable to compile the packet filter. Check the syntax.\n");
         pcap_freealldevs(alldevs);
         return;
     }
 
     if (pcap_setfilter(adhandle, &fcode) < 0)
     {
-        fprintf(stderr, "Error setting the filter.\n");
+        fprintf(stderr, "\nError setting the filter.\n");
         pcap_freealldevs(alldevs);
         return;
     }
 
-    printf("\nListening on %s...\n", d->description);
+    printf("\nlistening on %s...\n", d->description);
 
     pcap_freealldevs(alldevs);
 
