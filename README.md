@@ -137,6 +137,13 @@ seçilen adaptörden gerçek zamanlı ağ paketlerini yakalar ve bu paketleri be
 ![-](images/ConsoleApp6.PNG)
 ![-](images/ConsoleApp7.PNG)
 
+## Interpreting Packets 
+
+Yakalanan paketin IP ve UDP başlıklarını ayrıştırır, zaman damgasını okunabilir formata çevirir ve paket uzunluğu, kaynak ve hedef IP adresleri ile port numaralarını ekrana yazdırır.
+
+
+![-](images/Interpackets.PNG)
+
 
 ## Read Örneği
 
