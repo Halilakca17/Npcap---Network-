@@ -20,7 +20,7 @@ Npcap, yalnızca paket yakalamayı değil, aynı zamanda ham paket göndermeyi d
 
 ## Proje Hakkında
 
-Bu proje, C diliyle geliştirilmiş bir ağ paket analizörüdür. NPcap SDK kullanılarak ağ arayüzlerinden paket yakalama, bu paketleri analiz etme, kaydetme, tekrar oynatma ve çeşitli istatistikler toplama gibi işlemler gerçekleştirir. Proje, özellikle ağ trafiğini incelemek, kaydetmek ve analiz etmek isteyenler için temel bir altyapı sunar.
+Bu proje, C diliyle geliştirilmiş bir ağ paket analizörüdür. NPcap SDK kullanılarak ağ arayüzlerinden paket yakalama, bu paketleri analiz etme, kaydetme, tekrar oynatma ve çeşitli istatistikler toplama gibi işlemler gerçekleştirir. Proje, özellikle ağ trafiğini incelemek, kaydetmek ve analiz etmek isteyenler için temel bir altyapı sunar.  
 Kaynak kodların işleyişi hakkında dokümantasyon : https://drive.google.com/file/d/16AZ4-se-9-HBZ6aLoJOzhnYAFqWSSRXM/view?usp=sharing
 
 
